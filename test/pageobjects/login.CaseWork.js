@@ -2,12 +2,16 @@ import HomeBase from "./caseWorkHome";
 
 class LoginPage extends HomeBase {
 
+    get loginBoxBanner () {
+        return $('[class="___oz1s680 f1hd9hm2"]')
+    }
+
     get usernameInput () {
-        return $('#field-re4__control')
+        return $('[data-testid="login-username"]')
     }
 
     get passwordInput () {
-        return $('#field-re5__control')
+        return $('[data-testid="login-password"]')
     }
 
     get loginButton () {
@@ -20,3 +24,5 @@ class LoginPage extends HomeBase {
         await this.loginButton.click ();
     }
 }
+
+export default new LoginPage();
