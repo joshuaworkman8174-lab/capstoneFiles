@@ -1,6 +1,8 @@
 import HomeBase from "../pageobjects/caseWorkHome"
 import loginCaseWork from "../pageobjects/login.CaseWork"
 import firstView from "../pageobjects/firstView"
+import notifications from "../pageobjects/notifications"
+import casesNTasks from "../pageobjects/casesNTasks"
 
 describe('theCaseWork', () => {
     it('will let me log in', async () => {
@@ -8,7 +10,43 @@ describe('theCaseWork', () => {
         await expect(loginCaseWork.loginBoxBanner.isDisplayed());
         await loginCaseWork.login('JOSHUA.WORKMAN8174@STU.MTEC.EDU', 'Axeman13');
         await expect(firstView.cornerTitle.isDisplayed());
-
+        await casesNTasks.clickCreateCase();
+        await casesNTasks.inputCaseName('Jerry');
+        await casesNTasks.openDatePicker();
+        await casesNTasks.chooseDate();
+        await casesNTasks.pickRetainedBy();
+        await casesNTasks.finalizeCreation();
     })
+
+describe('The Notification system', () => {
+    it('can select an individual notification, and go to its page', async () => {
+        await notifications.clickNotifications ();
+        await expect(notifications.dropdownMenu.isDisplayed());
+        await browser.pause(1000);
+        await notifications.clickNotifyTitle ();
+        await browser.pause(1000);
+        await expect(notifications.caseInfoTab.isDisplayed());
+        await browser.pause(1000);
+        await notifications.clickNotifications ();
+    })
+    it('can delete individual notifications', async () => {
+        await notifications.clickNotifications ();
+        await browser.pause(1000);
+        await expect(notifications.dropdownMenu.isDisplayed());
+        await browser.pause(1000);
+        await notifications.closeANotification ();
+        await browser.pause(1000);
+        await notifications.clickNotifications ();
+    })
+    it('can delete all notifications at the same time', async () => {
+        await notifications.clickNotifications ();
+        await expect(notifications.dropdownMenu.isDisplayed());
+        await notifications.clickDismiss ();
+        await browser.pause(1000);
+        await expect(notifications.caughtUp.isDisplayed());
+        await browser.pause(1000);
+    })
+})
+    
 })
 
