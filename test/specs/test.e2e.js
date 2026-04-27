@@ -10,15 +10,14 @@ describe('theCaseWork', () => {
         await expect(loginCaseWork.loginBoxBanner.isDisplayed());
         await loginCaseWork.login('JOSHUA.WORKMAN8174@STU.MTEC.EDU', 'Axeman13');
         await expect(firstView.cornerTitle.isDisplayed());
-        await casesNTasks.clickCreateCase();
-        await casesNTasks.inputCaseName('Jerry');
-        await casesNTasks.openDatePicker();
-        await casesNTasks.chooseDate();
-        await casesNTasks.pickRetainedBy();
-        await casesNTasks.finalizeCreation();
     })
 
 describe('The Notification system', () => {
+    it('can make new notifications', async () => {
+        await casesNTasks.casesPage ();
+        await casesNTasks.makeNewCase ();
+        //Make sure you have assertions for these.
+    })
     it('can select an individual notification, and go to its page', async () => {
         await notifications.clickNotifications ();
         await expect(notifications.dropdownMenu.isDisplayed());
@@ -28,6 +27,7 @@ describe('The Notification system', () => {
         await expect(notifications.caseInfoTab.isDisplayed());
         await browser.pause(1000);
         await notifications.clickNotifications ();
+        //Make sure you have assertions for these.
     })
     it('can delete individual notifications', async () => {
         await notifications.clickNotifications ();
@@ -37,6 +37,7 @@ describe('The Notification system', () => {
         await notifications.closeANotification ();
         await browser.pause(1000);
         await notifications.clickNotifications ();
+        //Make sure you have assertions for these.
     })
     it('can delete all notifications at the same time', async () => {
         await notifications.clickNotifications ();
@@ -45,8 +46,10 @@ describe('The Notification system', () => {
         await browser.pause(1000);
         await expect(notifications.caughtUp.isDisplayed());
         await browser.pause(1000);
+        //Make sure you have assertions for these.
     })
 })
+
     
 })
 
