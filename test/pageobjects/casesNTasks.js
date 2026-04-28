@@ -39,11 +39,15 @@ class CasesList extends HomeBase {
     }
 
     get chooseFriarTuck () {
-        return $('[data-testid="undefined-90248692-e1c9-4214-98c5-2dde974709df-option"]')
+        return $('[data-testid="client-party-dropdown-90248692-e1c9-4214-98c5-2dde974709df-option"]')
     }
     
     get finalCreateButton () {
-        return $('[data-testid="add-case-create-button"]')
+        return $('[data-testid="add-case-create-button"]');
+    }
+
+    get casePick () {
+        return $('button[class*="fui-Link ___nma5dl0"]');
     }
 
     async casesPage () {
@@ -104,7 +108,7 @@ class CasesList extends HomeBase {
     }
 
     async makeNewCase () {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             await this.casePageCreateCase();
             await this.inputCaseName('Jerry');
             await this.openDatePicker();
@@ -112,6 +116,12 @@ class CasesList extends HomeBase {
             await this.pickRetainedBy();
             await this.finalizeCreation();
         }
+    }
+
+    async chooseACase () {
+        await this.casePick.isDisplayed();
+        await this.casePick.isClickable();
+        await this.casePick.click();
     }
 
 }

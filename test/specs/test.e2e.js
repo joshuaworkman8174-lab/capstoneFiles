@@ -3,6 +3,8 @@ import loginCaseWork from "../pageobjects/login.CaseWork"
 import firstView from "../pageobjects/firstView"
 import notifications from "../pageobjects/notifications"
 import casesNTasks from "../pageobjects/casesNTasks"
+import AddEvents from "../pageobjects/eventsCreation"
+import eventsCreation from "../pageobjects/eventsCreation"
 
 describe('theCaseWork', () => {
     it('will let me log in', async () => {
@@ -47,6 +49,33 @@ describe('The Notification system', () => {
         await expect(notifications.caughtUp.isDisplayed());
         await browser.pause(1000);
         //Make sure you have assertions for these.
+    })    
+})
+
+describe('The Add Event feature', () => {
+    it('can create, read, update, and delete events', async () => {
+        await casesNTasks.casesPage ();
+        await expect(casesNTasks.casePageCreateButton.isDisplayed());
+        await casesNTasks.chooseACase ();
+        await expect(eventsCreation.caseEventsTab.isDisplayed());
+        await eventsCreation.clickEventsTab ();
+        await eventsCreation.createAnEvent ();
+        await expect(eventsCreation.eventDisplayed.isDisplayed());
+        await eventsCreation.rightClickEvent();
+        await eventsCreation.clickEdit();
+        await expect(eventsCreation.cancelAddEventButton.isDisplayed());
+        await eventsCreation.editAnEvent();
+        await eventsCreation.clickDeleteEvent();
+        await eventsCreation.confirmDeletion();
+    it('has a boundary for the description box', async () => {
+        await casesNTasks.casesPage ();
+        await expect(casesNTasks.casePageCreateButton.isDisplayed());
+        await casesNTasks.chooseACase ();
+        await expect(eventsCreation.caseEventsTab.isDisplayed());
+        await eventsCreation.clickEventsTab ();
+        
+    })
+
     })
 })
 
