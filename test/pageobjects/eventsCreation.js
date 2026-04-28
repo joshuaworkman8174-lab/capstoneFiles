@@ -128,6 +128,10 @@ class AddEvents extends HomeBase {
         await this.deleteYesButton.isClickable();
         await this.deleteYesButton.click();
     }
+
+    async boundaryDescription () {
+        
+    }
 }
 
 export default new AddEvents ();

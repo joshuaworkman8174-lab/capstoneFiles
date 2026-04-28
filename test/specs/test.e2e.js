@@ -73,7 +73,9 @@ describe('The Add Event feature', () => {
         await casesNTasks.chooseACase ();
         await expect(eventsCreation.caseEventsTab.isDisplayed());
         await eventsCreation.clickEventsTab ();
+        await eventsCreation.clickAddEvent();
         
+
     })
 
     })
