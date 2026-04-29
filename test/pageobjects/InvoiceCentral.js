@@ -62,7 +62,9 @@ class InvoiceCollection extends HomeBase {
         return $('[data-testid="custom-data-table-context-menu-item-Delete"]');
     }
 
-    
+    get invoiceRows () {
+        return $('div[class*="fui-DataGridRow fui-TableRow ___rq4ttb0"]');
+    }
 }
 
 export default new InvoiceCollection ();
