@@ -6,3 +6,5 @@ export default class HomeBase {
         return browser.url(`https://app.thecasework.com/`)
     }
 }
+
+export const characters = ['ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz']

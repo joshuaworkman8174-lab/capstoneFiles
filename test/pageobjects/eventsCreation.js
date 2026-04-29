@@ -1,5 +1,5 @@
 import casesNTasks from "./casesNTasks";
-import HomeBase from "./caseWorkHome";
+import HomeBase, { characters } from "./caseWorkHome";
 
 class AddEvents extends HomeBase {
 
@@ -129,8 +129,16 @@ class AddEvents extends HomeBase {
         await this.deleteYesButton.click();
     }
 
-    async boundaryDescription () {
-        
+    async characterRandomizer () {
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return result;
+    }
+
+    async boundaryDescription (length) {
+        await this.eventDescriptionBox.setValue(this.characterRandomizer(length))
     }
 }
 

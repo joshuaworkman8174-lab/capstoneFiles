@@ -65,20 +65,25 @@ describe('The Add Event feature', () => {
         await eventsCreation.clickEdit();
         await expect(eventsCreation.cancelAddEventButton.isDisplayed());
         await eventsCreation.editAnEvent();
+        await expect(eventsCreation.eventDisplayedEdited.isDisplayed());
         await eventsCreation.clickDeleteEvent();
+        await expect(eventsCreation.deleteYesButton.isDisplayed());
         await eventsCreation.confirmDeletion();
+
+    })
+
     it('has a boundary for the description box', async () => {
         await casesNTasks.casesPage ();
         await expect(casesNTasks.casePageCreateButton.isDisplayed());
         await casesNTasks.chooseACase ();
         await expect(eventsCreation.caseEventsTab.isDisplayed());
         await eventsCreation.clickEventsTab ();
+        await expect(eventsCreation.addEventsButton.isDisplayed());
         await eventsCreation.clickAddEvent();
-        
-
+        await expect(eventsCreation.eventDescriptionBox.isDisplayed());
+        await eventsCreation.boundaryDescription(10000);
     })
 
-    })
 })
 
     
