@@ -59,6 +59,10 @@ class AddEvents extends HomeBase {
         return $('[data-testid="confirmation-dialog-confirm-button"]');
     }
 
+    get dueBadge () {
+        return $('div[class*="fui-Badge r1l7mb74"]')
+    }
+
     async clickEventsTab () {
         await this.caseEventsTab.isClickable();
         await this.caseEventsTab.click();
@@ -101,6 +105,29 @@ class AddEvents extends HomeBase {
         }
     }
 
+    async cancelMidProcess () {
+        for (let i = 0; i < 1; i++) {
+        await this.addEventsButton.click();
+        await this.intputEventName('Hunt Some Orc');
+        await this.eventDatePicker.click();
+        await casesNTasks.todayLittleDate.click();
+        await this.eventDescriptionInput('Save them hobbits!');
+        await this.cancelAddEventButton.click();
+        }
+    }
+
+    async dueDateEvent () {
+        for (let i = 0; i < 1; i++) {
+        await this.addEventsButton.click();
+        await this.intputEventName('Hunt Some Orc');
+        await this.eventDatePicker.click();
+        await casesNTasks.todayLittleDate.click();
+        await this.eventDescriptionInput('Save them hobbits!');
+        await this.dueDateBox.click();
+        await this.saveEventButton.click();
+        }
+    }
+
     async editAnEvent () {
         for (let i = 0; i < 1; i++) {
         await this.intputEventName('Make some stew');
@@ -129,7 +156,7 @@ class AddEvents extends HomeBase {
         await this.deleteYesButton.click();
     }
 
-    async characterRandomizer () {
+        characterRandomizer(length) {
         let result = '';
         for (let i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -138,7 +165,25 @@ class AddEvents extends HomeBase {
     }
 
     async boundaryDescription (length) {
-        await this.eventDescriptionBox.setValue(this.characterRandomizer(length))
+        await this.eventDescriptionBox.setValue(this.characterRandomizer(length));
+    }
+
+    async boundaryName (length) {
+        await this.eventNameBox.setValue(this.characterRandomizer(length));
+    }
+
+    async cancelEvent () {
+        await this.cancelAddEventButton.isClickable();
+        await this.cancelAddEventButton.click();
+    }
+
+    async deleteTopEvent () {
+        await this.eventDisplayed.isClickable();
+        await this.eventDisplayed.click();
+        await this.deleteSelectedRow.isClickable();
+        await this.deleteSelectedRow.click();
+        await this.deleteYesButton.isDisplayed();
+        await this.deleteYesButton.click();
     }
 }
 

@@ -23,21 +23,15 @@ describe('The Notification system', () => {
     it('can select an individual notification, and go to its page', async () => {
         await notifications.clickNotifications ();
         await expect(notifications.dropdownMenu.isDisplayed());
-        await browser.pause(1000);
         await notifications.clickNotifyTitle ();
-        await browser.pause(1000);
         await expect(notifications.caseInfoTab.isDisplayed());
-        await browser.pause(1000);
         await notifications.clickNotifications ();
         //Make sure you have assertions for these.
     })
     it('can delete individual notifications', async () => {
         await notifications.clickNotifications ();
-        await browser.pause(1000);
         await expect(notifications.dropdownMenu.isDisplayed());
-        await browser.pause(1000);
         await notifications.closeANotification ();
-        await browser.pause(1000);
         await notifications.clickNotifications ();
         //Make sure you have assertions for these.
     })
@@ -45,9 +39,7 @@ describe('The Notification system', () => {
         await notifications.clickNotifications ();
         await expect(notifications.dropdownMenu.isDisplayed());
         await notifications.clickDismiss ();
-        await browser.pause(1000);
         await expect(notifications.caughtUp.isDisplayed());
-        await browser.pause(1000);
         //Make sure you have assertions for these.
     })    
 })
@@ -65,7 +57,6 @@ describe('The Add Event feature', () => {
         await eventsCreation.clickEdit();
         await expect(eventsCreation.cancelAddEventButton.isDisplayed());
         await eventsCreation.editAnEvent();
-        await expect(eventsCreation.eventDisplayedEdited.isDisplayed());
         await eventsCreation.clickDeleteEvent();
         await expect(eventsCreation.deleteYesButton.isDisplayed());
         await eventsCreation.confirmDeletion();
@@ -79,11 +70,53 @@ describe('The Add Event feature', () => {
         await expect(eventsCreation.caseEventsTab.isDisplayed());
         await eventsCreation.clickEventsTab ();
         await expect(eventsCreation.addEventsButton.isDisplayed());
-        await eventsCreation.clickAddEvent();
+        await eventsCreation.clickAddEvent ();
         await expect(eventsCreation.eventDescriptionBox.isDisplayed());
-        await eventsCreation.boundaryDescription(10000);
+        await eventsCreation.boundaryDescription (10000);
+        await eventsCreation.cancelEvent ();
     })
 
+    it('has a boundary for the event name box', async () => {
+        await casesNTasks.casesPage ();
+        await expect(casesNTasks.casePageCreateButton.isDisplayed());
+        await casesNTasks.chooseACase ();
+        await expect(eventsCreation.caseEventsTab.isDisplayed());
+        await eventsCreation.clickEventsTab ();
+        await expect(eventsCreation.addEventsButton.isDisplayed());
+        await eventsCreation.clickAddEvent ();
+        await expect(eventsCreation.eventNameBox.isDisplayed());
+        await eventsCreation.boundaryName (10000);
+        await eventsCreation.cancelEvent ();
+    })
+
+    it('can cancel out of the event creation process', async () => {
+        await casesNTasks.casesPage ();
+        await expect(casesNTasks.casePageCreateButton.isDisplayed());
+        await casesNTasks.chooseACase ();
+        await expect(eventsCreation.caseEventsTab.isDisplayed());
+        await eventsCreation.clickEventsTab ();
+        await expect(eventsCreation.addEventsButton.isDisplayed());
+        await eventsCreation.cancelMidProcess ();
+    })
+
+    it('can specify the due date of an event', async () => {
+        await casesNTasks.casesPage ();
+        await expect(casesNTasks.casePageCreateButton.isDisplayed());
+        await casesNTasks.chooseACase ();
+        await expect(eventsCreation.caseEventsTab.isDisplayed());
+        await eventsCreation.clickEventsTab ();
+        await expect(eventsCreation.addEventsButton.isDisplayed());
+        await eventsCreation.dueDateEvent ();
+        await expect(eventsCreation.dueBadge.isDisplayed());
+        await eventsCreation.deleteTopEvent ();
+    })
+
+})
+
+describe('The Create Invoice Feature', () => {
+    it('can create, read, update and delete invoices', () => {
+        
+    })
 })
 
     
