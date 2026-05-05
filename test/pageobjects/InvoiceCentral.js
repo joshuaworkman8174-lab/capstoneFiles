@@ -158,7 +158,8 @@ class InvoiceCollection extends HomeBase {
         
     }
 
-    async billingSelection() {
+    async billingLoop() {
+
     const billingPeriods = this.billingPeriods;
     
     for (let i = 0; i < billingPeriods.length; i++) {
