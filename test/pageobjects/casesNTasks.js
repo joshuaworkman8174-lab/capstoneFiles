@@ -27,7 +27,7 @@ class CasesList extends HomeBase {
     }
 
     get littleDates () {
-        return $$('button[class*="fui-CalendarDayGrid__dayButton __"]');
+        return $$('button[class*="fui-CalendarDayGrid__dayButton"]:not([disabled]):not([class*="dayIsToday"])');
     }
 
     get todayLittleDate () {

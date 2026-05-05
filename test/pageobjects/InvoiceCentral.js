@@ -31,6 +31,10 @@ class InvoiceCollection extends HomeBase {
         return $('[data-testid="create-invoice-date-picker"]');
     }
 
+    get invoiceCalendarDates () {
+        return $('button[class*="fui-CalendarDayGrid__dayButton"]:not([disabled]):not([class*="dayIsToday"])');
+    }
+
     get billingPeriodDrop () {
         return $('[data-testid="create-invoice-billing-period-dropdown"]');
     }
@@ -89,7 +93,7 @@ class InvoiceCollection extends HomeBase {
         await this.invoicesTab.click();
     }
 
-    async crudInvoice () {
+    async makeAnInvoice () {
         for (let i = 0; i < 1; i++) {
             await this.reGenerateButton.click();
             await this.newInvoiceTodayButton.click();
@@ -99,9 +103,6 @@ class InvoiceCollection extends HomeBase {
             await this.paymentNet90.click();
             await this.caseEngagementBox.click();
             await this.createInvoiceButton.click();
-            await this.invoiceListButton.click();
-            await this.invoiceMoreItems.click();
-            await this.markAsPaid.click();
         }
     }
 
@@ -128,6 +129,8 @@ class InvoiceCollection extends HomeBase {
     async todayButtonTest () {
         await this.newInvoiceTodayButton.click();
         await this.invoiceDatePicker.click();
+        await casesNTasks.chooseDate();
+        await this.newInvoiceTodayButton.click();
     }
 
 

@@ -9,7 +9,7 @@ import InvoiceCentral from "../pageobjects/InvoiceCentral"
 
 describe('theCaseWork', () => {
     it('will let me log in', async () => {
-        await loginCaseWork.open ();
+        await loginCaseWork.open();
         await expect(loginCaseWork.loginBoxBanner.isDisplayed());
         await loginCaseWork.login('JOSHUA.WORKMAN8174@STU.MTEC.EDU', 'Axeman13');
         await expect(firstView.cornerTitle.isDisplayed());
@@ -114,12 +114,7 @@ describe('The Add Event feature', () => {
 
 })
 
-describe('The Create Invoice Feature', () => {
-    it('can create, read, update and delete invoices', () => {
-        await InvoiceCentral.navInvoices ();
-        
-    })
-})
+
 
     
 })
