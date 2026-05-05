@@ -1,5 +1,6 @@
 import casesNTasks from "./casesNTasks";
 import HomeBase from "./caseWorkHome";
+import loginCaseWork from "./login.CaseWork";
 
 class InvoiceCollection extends HomeBase {
 
@@ -87,10 +88,27 @@ class InvoiceCollection extends HomeBase {
         return $('[data-testid="create-invoice-submit-button"]');
     }
 
+    get billingPeriods (){
+        return [ 
+        $('[data-testid="create-invoice-billing-period-option-Sat Nov 01 2025"]'),
+        $('[data-testid="create-invoice-billing-period-option-Mon Dec 01 2025"]'), 
+        $('[data-testid="create-invoice-billing-period-option-Thu Jan 01 2026"]'),
+        $('[data-testid="create-invoice-billing-period-option-Sun Feb 01 2026"]'), 
+        $('[data-testid="create-invoice-billing-period-option-Sun Mar 01 2026"]'), 
+        $('[data-testid="create-invoice-billing-period-option-Wed Apr 01 2026"]'), 
+        $('[data-testid="create-invoice-billing-period-option-Fri May 01 2026"]')
+        ];
+    }
+
     async navInvoices () {
         await casesNTasks.casesPage ();
         await casesNTasks.chooseACase ();
         await this.invoicesTab.click();
+    }
+
+    async clickNewInvoice () {
+        await this.startCreateInvoices.isClickable();
+        await this.startCreateInvoices.click();
     }
 
     async makeAnInvoice () {
@@ -107,6 +125,7 @@ class InvoiceCollection extends HomeBase {
     }
 
     async numberNegativeTest () {
+        await this.reGenerateButton.isClickable();
         await this.reGenerateButton.click();
         await this.newInvoiceTodayButton.click();
         await this.billingPeriodDrop.click();
@@ -126,12 +145,29 @@ class InvoiceCollection extends HomeBase {
         }
     }
 
+
     async todayButtonTest () {
         await this.newInvoiceTodayButton.click();
         await this.invoiceDatePicker.click();
         await casesNTasks.chooseDate();
         await this.newInvoiceTodayButton.click();
     }
+
+    async billingSelection () {
+        await this.billingPeriodDrop.click();
+        
+    }
+
+    async billingSelection() {
+    const billingPeriods = this.billingPeriods;
+    
+    for (let i = 0; i < billingPeriods.length; i++) {
+        await this.billingPeriodDrop.click();
+        await this.click(billingPeriods[i]);
+    }
+}
+
+
 
 
 }
