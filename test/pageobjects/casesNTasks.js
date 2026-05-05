@@ -35,7 +35,7 @@ class CasesList extends HomeBase {
     }
 
     get retainedByButton () {
-        return $('button[class*="fui-Button r1f29ykk fui-MenuButton ___p"]')
+        return $('[data-testid="client-party-dropdown"]')
     }
 
     get chooseFriarTuck () {

@@ -5,6 +5,7 @@ import notifications from "../pageobjects/notifications"
 import casesNTasks from "../pageobjects/casesNTasks"
 import AddEvents from "../pageobjects/eventsCreation"
 import eventsCreation from "../pageobjects/eventsCreation"
+import InvoiceCentral from "../pageobjects/InvoiceCentral"
 
 describe('theCaseWork', () => {
     it('will let me log in', async () => {
@@ -115,6 +116,7 @@ describe('The Add Event feature', () => {
 
 describe('The Create Invoice Feature', () => {
     it('can create, read, update and delete invoices', () => {
+        await InvoiceCentral.navInvoices ();
         
     })
 })

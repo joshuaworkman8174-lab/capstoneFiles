@@ -36,7 +36,7 @@ class AddEvents extends HomeBase {
     }
 
     get eventDisplayed () {
-        return $('div[class*="fui-DataGridRow fui-TableRow ___r"]')
+        return $('div[class*="fui-DataGridCell fui-TableCell ___"]')
     }
 
     get eventDisplayedEdited () {
@@ -182,7 +182,7 @@ class AddEvents extends HomeBase {
         await this.eventDisplayed.click();
         await this.deleteSelectedRow.isClickable();
         await this.deleteSelectedRow.click();
-        await this.deleteYesButton.isDisplayed();
+        await this.deleteYesButton.isClickable();
         await this.deleteYesButton.click();
     }
 }
