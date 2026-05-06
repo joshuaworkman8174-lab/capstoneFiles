@@ -163,8 +163,9 @@ class InvoiceCollection extends HomeBase {
     const billingPeriods = this.billingPeriods;
     
     for (let i = 0; i < billingPeriods.length; i++) {
+        await this.billingPeriods[i].click();
+        await this.billingPeriodDrop.isClickable();
         await this.billingPeriodDrop.click();
-        await this.click(billingPeriods[i]);
     }
 }
 

@@ -44,6 +44,7 @@ describe('The Create Invoice Feature', () => {
     it('has functional menus for the billing section', async () => {
         await InvoiceCentral.clickNewInvoice ();
         await InvoiceCentral.billingSelection ();
+        await InvoiceCentral.billingLoop ();
 
     })
 })
