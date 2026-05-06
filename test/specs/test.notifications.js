@@ -9,11 +9,12 @@ import InvoiceCentral from "../pageobjects/InvoiceCentral"
 
 describe('theCaseWork', () => {
     it('will let me log in', async () => {
-        await loginCaseWork.open();
+        await loginCaseWork.goToCaseWork();
         await expect(loginCaseWork.loginBoxBanner.isDisplayed());
-        await loginCaseWork.login('JOSHUA.WORKMAN8174@STU.MTEC.EDU', 'Axeman13');
+        await loginCaseWork.login(process.env.username, process.env.password);
         await expect(firstView.cornerTitle.isDisplayed());
     })
+})
 
 describe('The Notification system', () => {
     it('can make new notifications', async () => {
@@ -45,5 +46,5 @@ describe('The Notification system', () => {
     })    
 })
     
-})
+
 

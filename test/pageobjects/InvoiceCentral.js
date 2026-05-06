@@ -88,7 +88,7 @@ class InvoiceCollection extends HomeBase {
         return $('[data-testid="create-invoice-submit-button"]');
     }
 
-    get billingPeriods (){
+    get billingPeriods () {
         return [ 
         $('[data-testid="create-invoice-billing-period-option-Sat Nov 01 2025"]'),
         $('[data-testid="create-invoice-billing-period-option-Mon Dec 01 2025"]'), 
@@ -100,9 +100,66 @@ class InvoiceCollection extends HomeBase {
         ];
     }
 
+    get paymentTermsOptions () {
+        return [ 
+        $('[data-testid="create-invoice-payment-terms-option-Net 30"]'),
+        $('[data-testid="create-invoice-payment-terms-option-Net 60"]'), 
+        $('[data-testid="create-invoice-payment-terms-option-Net 90"]'),
+        $('[data-testid="create-invoice-payment-terms-option-Upon Receipt"]'), 
+        ];
+    }
+
+    get customBPeriod () {
+        return $('[data-testid="create-invoice-billing-period-option-custom"]');
+    }
+
+    get customBStartDate () {
+        return $('[data-testid="create-invoice-billing-period-start-picker"]');
+    }
+
+    get customBEndDate () {
+        return $('[data-testid="create-invoice-billing-period-end-picker"]');
+    }
+
+    get termsNet30 () {
+        return $('[data-testid="create-invoice-payment-terms-option-Net 30"]');
+    }
+
+    get termsNet60 () {
+        return $('[data-testid="create-invoice-payment-terms-option-Net 60"]');
+    }
+
+    get termsNet90 () {
+        return $('[data-testid="create-invoice-payment-terms-option-Net 90"]');
+    }
+
+    termsNet (number) {
+        return $(`[data-testid="create-invoice-payment-terms-option-Net ${number}"]`);
+    }
+
+    get termsReceipt () {
+        return $('[data-testid="create-invoice-payment-terms-option-Upon Receipt"]');
+    }
+
+    get termsCustom () {
+        return $('[data-testid="create-invoice-payment-terms-option-Custom"]');
+    }
+
+    get termsDueCal () {
+        return $('[data-testid="create-invoice-due-date-picker"]');
+    }
+
+    get invoicePDFButton () {
+        return $('[data-testid="case-invoices-pdf-viewer-tab"]');
+    }
+
     async navInvoices () {
         await casesNTasks.casesPage ();
         await casesNTasks.chooseACase ();
+        await this.invoicesTab.click();
+    }
+
+    async clickInvoicesTab () {
         await this.invoicesTab.click();
     }
 
@@ -119,7 +176,6 @@ class InvoiceCollection extends HomeBase {
             await this.billingDec.click();
             await this.paymentTermsDrop.click();
             await this.paymentNet90.click();
-            await this.caseEngagementBox.click();
             await this.createInvoiceButton.click();
         }
     }
@@ -163,11 +219,54 @@ class InvoiceCollection extends HomeBase {
     const billingPeriods = this.billingPeriods;
     
     for (let i = 0; i < billingPeriods.length; i++) {
-        await this.billingPeriods[i].click();
         await this.billingPeriodDrop.isClickable();
         await this.billingPeriodDrop.click();
+        await this.billingPeriods[i].click();
     }
 }
+
+    async billingSpecificDates () {
+        await this.billingPeriodDrop.isClickable();
+        await this.billingPeriodDrop.click();
+        await this.customBPeriod.isClickable();
+        await this.customBPeriod.click();
+        await this.customBStartDate.click();
+        await casesNTasks.chooseDate();
+        await this.customBEndDate.click();
+        await casesNTasks.chooseDate();
+    }
+
+     async paymentTermsLoop () {
+
+    const paymentOptions = this.paymentTermsOptions;
+    
+    for (let i = 0; i < this.paymentTermsOptions.length; i++) {
+        await this.paymentTermsDrop.isClickable();
+        await this.paymentTermsDrop.click();
+        await this.paymentTermsOptions[i].click();
+    }
+}
+
+    async paymentTermsCustom () {
+        await this.paymentTermsDrop.isClickable();
+        await this.paymentTermsDrop.click();
+        await this.termsCustom.isClickable();
+        await this.termsCustom.click();
+        await this.termsDueCal.isClickable();
+        await this.termsDueCal.click();
+        await casesNTasks.chooseDate();
+    }
+
+    async newInvoiceWithEngagement () {
+        await this.reGenerateButton.click();
+        await this.newInvoiceTodayButton.click();
+        await this.billingPeriodDrop.click();
+        await this.billingDec.click();
+        await this.paymentTermsDrop.click();
+        await this.paymentNet90.click();
+        await this.caseEngagementBox.click();
+        await this.createInvoiceButton.click();
+    }
 
 
 

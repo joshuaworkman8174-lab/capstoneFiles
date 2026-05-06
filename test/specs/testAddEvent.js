@@ -10,11 +10,12 @@ import InvoiceCentral from "../pageobjects/InvoiceCentral"
 
 describe('theCaseWork', () => {
     it('will let me log in', async () => {
-        await loginCaseWork.open();
+        await loginCaseWork.goToCaseWork();
         await expect(loginCaseWork.loginBoxBanner.isDisplayed());
-        await loginCaseWork.login('JOSHUA.WORKMAN8174@STU.MTEC.EDU', 'Axeman13');
+        await loginCaseWork.login(process.env.username, process.env.password);
         await expect(firstView.cornerTitle.isDisplayed());
     })
+})
 describe('The Add Event feature', () => {
     it('can create, read, update, and delete events', async () => {
         await casesNTasks.casesPage ();
@@ -81,12 +82,5 @@ describe('The Add Event feature', () => {
         await expect(eventsCreation.dueBadge.isDisplayed());
         await eventsCreation.deleteTopEvent ();
     })
-
-})
-
-
-
-
-
 
 })
