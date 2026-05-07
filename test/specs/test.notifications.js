@@ -20,29 +20,18 @@ describe('The Notification system', () => {
     it('can make new notifications', async () => {
         await casesNTasks.casesPage ();
         await casesNTasks.makeNewCase ();
-        //Make sure you have assertions for these.
     })
     it('can select an individual notification, and go to its page', async () => {
-        await notifications.clickNotifications ();
-        await expect(notifications.dropdownMenu.isDisplayed());
-        await notifications.clickNotifyTitle ();
-        await expect(notifications.caseInfoTab.isDisplayed());
-        await notifications.clickNotifications ();
-        //Make sure you have assertions for these.
+        await firstView.navToDash ();
+        await notifications.goToAPage ();
     })
     it('can delete individual notifications', async () => {
-        await notifications.clickNotifications ();
-        await expect(notifications.dropdownMenu.isDisplayed());
-        await notifications.closeANotification ();
-        await notifications.clickNotifications ();
-        //Make sure you have assertions for these.
+        await firstView.navToDash ();
+        await notifications.deleteJustOne ();
     })
     it('can delete all notifications at the same time', async () => {
-        await notifications.clickNotifications ();
-        await expect(notifications.dropdownMenu.isDisplayed());
-        await notifications.clickDismiss ();
-        await expect(notifications.caughtUp.isDisplayed());
-        //Make sure you have assertions for these.
+        await firstView.navToDash ();
+        await notifications.wipeThemOut ();
     })    
 })
     

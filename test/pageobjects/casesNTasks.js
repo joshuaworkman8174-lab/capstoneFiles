@@ -50,6 +50,10 @@ class CasesList extends HomeBase {
         return $('button[class*="fui-Link ___nma5dl0"]');
     }
 
+    get casesFilterButton () {
+        return $('[data-testid="cases-page-filters-button"]');
+    }
+
     async casesPage () {
         await this.casesButton.isDisplayed();
         await this.casesButton.isClickable();
@@ -115,6 +119,7 @@ class CasesList extends HomeBase {
             await this.chooseToday();
             await this.pickRetainedBy();
             await this.finalizeCreation();
+            await this.casesFilterButton.waitForDisplayed();
         }
     }
 

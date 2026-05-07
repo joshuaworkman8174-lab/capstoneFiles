@@ -6,6 +6,16 @@ class Dashboard extends HomeBase {
         return $('[class="___e2lbd60 f3wt7jm"]')
     }
 
+    get dashboardButton () {
+        return $('[data-testid="vert-nav-dashboard"]');
+    }
+
+    async navToDash () {
+        await this.dashboardButton.isDisplayed();
+        await this.dashboardButton.isClickable();
+        await this.dashboardButton.click();
+    }
+
 
 }
 
