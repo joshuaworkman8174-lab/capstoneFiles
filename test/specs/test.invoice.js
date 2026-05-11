@@ -27,7 +27,7 @@ describe('The Create Invoice Feature', () => {
     })
 
    it('requires a valid number for each invoice', async () => {
-        await browser.pause(4000);
+        await InvoiceCentral.invoicePDFDisplay.waitForStable();
         await InvoiceCentral.clickNewInvoice ();
         await InvoiceCentral.numberNegativeTest ();
     })

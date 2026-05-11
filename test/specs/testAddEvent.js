@@ -81,6 +81,7 @@ describe('The Add Event feature', () => {
         await eventsCreation.dueDateEvent ();
         await expect(eventsCreation.dueBadge.isDisplayed());
         await eventsCreation.deleteTopEvent ();
+        await eventsCreation.emptyEventsBox.waitForDisplayed();
     })
 
 })

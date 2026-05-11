@@ -63,6 +63,18 @@ class AddEvents extends HomeBase {
         return $('div[class*="fui-Badge r1l7mb74"]')
     }
 
+    get emptyEventsBox () {
+        return $('div[class*="fui-DataGridBody fui-TableBody"]');
+    }
+
+    get maxedOutName () {
+            return $('[id="field-r2i6__validationMessage"]');
+        }
+    
+    get maxedOutDescription () {
+            return $('[id="field-r2ic__hint"]')
+        }
+
     async clickEventsTab () {
         await this.caseEventsTab.isClickable();
         await this.caseEventsTab.click();
@@ -147,7 +159,7 @@ class AddEvents extends HomeBase {
     }
 
     async clickDeleteEvent () {
-        await this.deleteSelectedRow.isClickable();
+        await this.deleteSelectedRow.waitForStable();
         await this.deleteSelectedRow.click();
     }
 
@@ -166,10 +178,12 @@ class AddEvents extends HomeBase {
 
     async boundaryDescription (length) {
         await this.eventDescriptionBox.setValue(this.characterRandomizer(length));
+        await expect(this.maxedOutDescription.isDisplayed());
     }
 
     async boundaryName (length) {
         await this.eventNameBox.setValue(this.characterRandomizer(length));
+        await expect(this.maxedOutName.isDisplayed());
     }
 
     async cancelEvent () {

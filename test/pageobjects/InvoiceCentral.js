@@ -9,7 +9,7 @@ class InvoiceCollection extends HomeBase {
     }
 
     get startCreateInvoices () {
-        return $('[data-testid="case-invoices-create-invoice-tab"]');
+        return $('[data-testid="tab-case-invoices-createInvoice"]');
     }
 
     get invoiceListButton () {
@@ -151,6 +151,10 @@ class InvoiceCollection extends HomeBase {
 
     get invoicePDFButton () {
         return $('[data-testid="case-invoices-pdf-viewer-tab"]');
+    }
+
+    get invoicePDFDisplay () {
+        return $('div[class*="___itah2o0"]');
     }
 
     async navInvoices () {
